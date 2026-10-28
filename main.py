@@ -68,10 +68,59 @@ def run_investigation():
     guess = input("What's your guess?").strip()
 
 
+def display_main_menu():
+    """Display the main menu."""
+    print("🔎 WIKIPEDIA DETECTIVE")
+    print()
+    print("Every article holds a clue. Can you solve the mystery?")
+    print()
+    print("MAIN MENU")
+    print("---")
+    print("1. Start a new investigation")
+    print("2. Quit the game")
+    print("---")
+
+
+def select_case():
+    """Display available mystery cases and prompt the player to select one.
+
+    Returns:
+        Case: The selected mystery case.
+        None: If the player chooses to return to the main menu.
+    """
+    print("---")
+    print("CHOOSE YOUR MYSTERY")
+    print()
+    print("Select a case to investigate:")
+    print("---")
+
+    for i, case in enumerate(cases.cases):
+        print(f"{i + 1}. {case.title} - {case.difficulty.value}")
+
+    print("---")
+    print("0. ↩ Return to main menu")
+    print()
+
+    while True:
+        try:
+            user_input = int(input("Enter your choice (0-3): "))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+
+        if user_input not in range(0, len(cases.cases) + 1):
+            print("Please enter a valid number.")
+            continue
+
+        if user_input == 0:
+            return None
+
+        return cases.cases[user_input - 1]
+
+
 if __name__ == '__main__':
     test_case = cases.case_001
     print(test_case.title)
     print(test_case.description)
     print(test_case.clues)
-    # run_investigation()
 

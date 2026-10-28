@@ -13,19 +13,6 @@ case_001 = Case(
     Difficulty.EASY)
 
 case_002 = Case(
-    "The Analytical Pioneer",
-    "Explore the early history of computing and the people who shaped it.",
-    "Ada Lovelace",
-    [
-        "This person lived during the nineteenth century.",
-        "They worked on ideas involving a mechanical computing machine.",
-        "Their notes included an algorithm intended for Charles Babbage's Analytical Engine."
-    ],
-    100,
-    Difficulty.HARD
-)
-
-case_003 = Case(
     "The Gothic Creator",
     "Investigate a mystery from the world of literature and classic fiction.",
     "Mary Shelley",
@@ -36,6 +23,19 @@ case_003 = Case(
     ],
     100,
     Difficulty.MEDIUM
+)
+
+case_003 = Case(
+    "The Analytical Pioneer",
+    "Explore the early history of computing and the people who shaped it.",
+    "Ada Lovelace",
+    [
+        "This person lived during the nineteenth century.",
+        "They worked on ideas involving a mechanical computing machine.",
+        "Their notes included an algorithm intended for Charles Babbage's Analytical Engine."
+    ],
+    100,
+    Difficulty.HARD
 )
 
 cases = [case_001, case_002, case_003]
