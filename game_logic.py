@@ -35,3 +35,22 @@ def check_guess(guess, case):
 
     return guess.strip().casefold() == case.answer.strip().casefold()
 
+
+def calculate_score(case, clues_revealed):
+    """
+    Calculate the score for solving a mystery case.
+
+    Deduct points based on the number of clues revealed. The fewer
+    clues revealed, the higher the score.
+
+    Args:
+        case: The mystery case containing the maximum points and clues.
+        clues_revealed: The number of clues revealed during the investigation.
+
+    Returns:
+        The calculated score as a rounded integer.
+    """
+    deduction = case.points / (len(case.clues) + 1)
+    score = case.points - (deduction * clues_revealed)
+
+    return round(score)
