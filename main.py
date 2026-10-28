@@ -1,10 +1,19 @@
 import wikipediaapi
+import cases
 
 
 wiki_wiki = wikipediaapi.Wikipedia(user_agent='Wiki Detective (https://github.com/nadineplank/wiki-detective)', language='en')
 
 def retrieve_article(title):
-    """Retrieves article from Wikipedia"""
+    """Retrieve a Wikipedia article by its title.
+
+        Args:
+            title: The title of the Wikipedia article to retrieve.
+
+        Returns:
+            A dictionary containing the article's URL, title, and summary,
+            or None if the article does not exist.
+        """
     page = wiki_wiki.page(title)
     if page.exists():
         return {
@@ -14,7 +23,13 @@ def retrieve_article(title):
         }
     return None
 
+
 def get_investigation_choice():
+    """Prompt the player to choose their next investigation action.
+
+    Returns:
+        The player's validated choice: 'article' or 'guess'.
+    """
     choices = ["article", "guess"]
 
     while True:
@@ -29,6 +44,7 @@ def get_investigation_choice():
 
 
 def run_investigation():
+    """Let the player investigate Wikipedia articles and make a guess."""
     while True:
         title = input("At which Wikipedia article do you want to look? ").strip()
         if title == "":
@@ -53,6 +69,9 @@ def run_investigation():
 
 
 if __name__ == '__main__':
-
-    run_investigation()
+    test_case = cases.case_001
+    print(test_case.title)
+    print(test_case.description)
+    print(test_case.clues)
+    # run_investigation()
 
