@@ -2,7 +2,8 @@ import cases
 
 from game_logic import reveal_next_clue, check_guess, calculate_score
 from investigation import run_investigation, retrieve_article
-
+from ai.mystery_generator import generate_mystery
+from case import Difficulty
 
 def display_main_menu():
     """Display the main menu."""
@@ -36,8 +37,11 @@ def select_case():
     """
     Display available mystery cases and prompt the player to select one.
 
+    Players can choose a predefined case, generate a mystery by topic,
+    or return to the main menu.
+
     Returns:
-        Case: The selected mystery case.
+        Case: The selected predefined or AI-generated mystery case.
         None: If the player chooses to return to the main menu.
     """
     print("---")
@@ -49,23 +53,49 @@ def select_case():
     for i, case in enumerate(cases.cases):
         print(f"{i + 1}. {case.title} - {case.difficulty.value}")
 
+    ai_option = len(cases.cases) + 1
+
+    print(f"{ai_option}. Generate a mystery by topic")
+
     print("---")
     print("0. ↩ Return to main menu")
     print()
 
     while True:
         try:
-            user_input = int(input("Enter your choice (0-3): "))
+            user_input = int(input(f"Enter your choice (0-{ai_option}): "))
         except ValueError:
             print("Please enter a valid number.")
             continue
 
-        if user_input not in range(0, len(cases.cases) + 1):
+        if user_input not in range(0, ai_option + 1):
             print("Please enter a valid number.")
             continue
 
         if user_input == 0:
             return None
+
+        if user_input == ai_option:
+            topic = input("What topic would you like to investigate? ").strip()
+
+            if not topic:
+                print("Please enter a topic.")
+                continue
+
+            for i, difficulty in enumerate(Difficulty):
+                print(f"{i + 1}. {difficulty.value}")
+
+            while True:
+                try:
+                    difficulty_input = int(input("What difficulty would you like (1-3)? " ))
+
+                except ValueError:
+                    print("Please enter a valid number.")
+                    continue
+
+                difficulty = list(Difficulty)[difficulty_input -1]
+                generated_case = generate_mystery(topic, difficulty)
+                return generated_case
 
         return cases.cases[user_input - 1]
 
@@ -79,6 +109,7 @@ def play_game(case):
 
    """
     used_clues = 0
+    print()
     print("🕵️ INVESTIGATION STARTED")
     print(f"Case: {case.title}")
     print("---")
