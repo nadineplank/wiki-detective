@@ -1,5 +1,3 @@
-import sys
-
 import cases
 
 from game_logic import reveal_next_clue, check_guess, calculate_score
@@ -132,10 +130,39 @@ def play_game(case):
                 print()
 
 
+def main():
+    """
+    Run the main game loop.
+
+    Display the main menu, handle the player's choice, and coordinate
+    case selection and gameplay until the player chooses to quit.
+    """
+
+    while True:
+        display_main_menu()
+
+        try:
+            user_input = int(input("Enter your choice (1-2): "))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+
+        if user_input not in range(1, 3):
+            print("Please enter a valid number.")
+            continue
+
+        if user_input == 1:
+            selected_case = select_case()
+
+            if selected_case:
+                play_game(selected_case)
+
+        if user_input == 2:
+            print("---")
+            print("Thanks for playing Wikipedia Detective! 🕵️")
+            break
+
+
 if __name__ == '__main__':
-    test_case = cases.case_001
-    print(test_case.title)
-    print(test_case.description)
-    print(test_case.clues)
-    play_game(test_case)
+    main()
 
