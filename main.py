@@ -71,21 +71,28 @@ def select_case():
 
 
 def play_game(case):
+    """
+    Run the investigation game for the selected case.
+
+    Args:
+       case: The mystery case selected by the player.
+
+   """
     used_clues = 0
     print("🕵️ INVESTIGATION STARTED")
     print(f"Case: {case.title}")
     print("---")
     print()
-    print("CASE BRIEFING")
+    print("🗂️CASE BRIEFING")
     print(case.description)
     print()
     print("Your mission: uncover the identity of the mystery person.")
     print("Search Wikipedia articles for clues, connect the evidence,")
     print("and make your guess when you're ready.")
-    print()
     print("---")
 
     while True:
+        print()
         print("What would you like to do? ")
         print("---")
         print("1. Investigate another Wikipedia article")

@@ -1,8 +1,11 @@
 from case import Case, Difficulty
 
+
 case_001 = Case(
     "The Revolutionary Physicist",
-    "Investigate a mystery from the world of physics and scientific discovery.",
+    "Investigate the world of theoretical physics and the "
+        "scientific discoveries that transformed our understanding "
+        "of space, time, and the universe.",
     "Albert Einstein",
     [
         "This person made major contributions to science.",
@@ -10,11 +13,14 @@ case_001 = Case(
         "They developed the theory of relativity."
     ],
     100,
-    Difficulty.EASY)
+    Difficulty.EASY
+)
 
 case_002 = Case(
     "The Gothic Creator",
-    "Investigate a mystery from the world of literature and classic fiction.",
+    "Explore the world of nineteenth-century Gothic "
+        "literature and the writers who examined the boundaries "
+        "between scientific ambition and human responsibility.",
     "Mary Shelley",
     [
         "This person was a British writer.",
@@ -27,7 +33,9 @@ case_002 = Case(
 
 case_003 = Case(
     "The Analytical Pioneer",
-    "Explore the early history of computing and the people who shaped it.",
+    "Explore the early history of computing and the "
+        "visionary ideas that laid the groundwork for modern "
+        "computer programming.",
     "Ada Lovelace",
     [
         "This person lived during the nineteenth century.",

@@ -16,7 +16,9 @@ def reveal_next_clue(case, clues_revealed):
         print("All clues have been revealed.")
         return clues_revealed
 
+    print()
     print(case.clues[clues_revealed])
+    print()
     return clues_revealed + 1
 
 

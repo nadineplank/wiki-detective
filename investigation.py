@@ -23,7 +23,7 @@ def retrieve_article(title):
     return None
 
 def run_investigation():
-    """Let the player investigate Wikipedia articles and make a guess."""
+    """Let the player investigate Wikipedia articles."""
     while True:
         title = input("At which Wikipedia article do you want to look? ").strip()
         if title == "":
@@ -38,3 +38,4 @@ def run_investigation():
             print(f"URL: {article['url']}")
             print(f"Summary: {article['summary']}")
             print(" ")
+            return
