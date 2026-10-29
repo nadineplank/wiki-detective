@@ -1,2 +1,6 @@
 
 wikipedia-api
+
+python-dotenv
+
+openrouter
