@@ -4,3 +4,5 @@ wikipedia-api
 python-dotenv
 
 openrouter
+
+rich

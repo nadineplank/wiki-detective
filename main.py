@@ -4,6 +4,9 @@ from game_logic import reveal_next_clue, check_guess, calculate_score
 from investigation import run_investigation, retrieve_article
 from ai.mystery_generator import generate_mystery
 from case import Difficulty
+from rich.console import Console
+
+console = Console()
 
 def display_main_menu():
     """Display the main menu."""
@@ -93,8 +96,14 @@ def select_case():
                     print("Please enter a valid number.")
                     continue
 
+                if difficulty_input not in range(1, 4):
+                    print("Please enter a valid number.")
+                    continue
+
                 difficulty = list(Difficulty)[difficulty_input -1]
-                generated_case = generate_mystery(topic, difficulty)
+
+                with console.status("Generating your mystery...", spinner="aesthetic"):
+                    generated_case = generate_mystery(topic, difficulty)
                 return generated_case
 
         return cases.cases[user_input - 1]
@@ -114,7 +123,7 @@ def play_game(case):
     print(f"Case: {case.title}")
     print("---")
     print()
-    print("🗂️CASE BRIEFING")
+    print("🗂️ CASE BRIEFING")
     print(case.description)
     print()
     print("Your mission: uncover the identity of the mystery person.")
