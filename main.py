@@ -1,7 +1,7 @@
 import cases
 
 from game_logic import reveal_next_clue, check_guess, calculate_score
-from investigation import run_investigation, retrieve_article
+from investigation import run_investigation, retrieve_article, explore_sections
 from ai.mystery_generator import generate_mystery
 from case import Difficulty
 from rich.console import Console
@@ -118,13 +118,14 @@ def play_game(case):
 
    """
     used_clues = 0
+    last_article = None
     print()
     print("🕵️ INVESTIGATION STARTED")
     print(f"Case: {case.title}")
     print("---")
     print()
     print("🗂️ CASE BRIEFING")
-    print(case.description)
+    console.print(case.description)
     print()
     print("Your mission: uncover the identity of the mystery person.")
     print("Search Wikipedia articles for clues, connect the evidence,")
@@ -136,29 +137,39 @@ def play_game(case):
         print("What would you like to do? ")
         print("---")
         print("1. Investigate another Wikipedia article")
-        print("2. Reveal a clue")
-        print("3. Make a guess")
+        print("2. Explore sections of the last article")
+        print("3. Reveal a clue")
+        print("4. Make a guess")
         print("---")
         print("0. ↩ Return to main menu")
         print()
 
         try:
-            user_input = int(input("Enter your choice (0-3): "))
+            user_input = int(input("Enter your choice (0-4): "))
         except ValueError:
             print("Please enter a valid number.")
             continue
 
-        if user_input not in range(0, 4):
+        if user_input not in range(0, 5):
             print("Please enter a valid number.")
             continue
 
         if user_input == 0:
             break
 
-        if user_input == 1:
-            run_investigation()
+        elif user_input == 1:
+            result = run_investigation()
+            if result:
+                last_article = result
 
         elif user_input == 2:
+            if last_article is None:
+                print("Explore an article first.")
+                continue
+            else:
+                explore_sections(last_article)
+
+        elif user_input == 3:
             used_clues = reveal_next_clue(case, used_clues)
 
         else:
